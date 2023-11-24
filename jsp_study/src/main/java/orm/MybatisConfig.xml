@@ -5,7 +5,6 @@
   <configuration>
   <typeAliases>
   <typeAlias type="domain.BoardVO" alias="bvo"/>
-
   </typeAliases>
   <environments default="development">
     <environment id="development">
