@@ -45,24 +45,33 @@ public class BoardDAOImpl implements BoardDAO {
 	@Override
 	public int readcountUpdate(int bno) {
 		log.info(">>>>detail ReadCount update check");
-		int isOk=sql.update("BoardMapper.read" ,bno);
-		if(isOk>0) {sql.commit();}
+		int isOk = sql.update("BoardMapper.read", bno);
+		if (isOk > 0) {
+			sql.commit();
+		}
 		return 0;
 	}
 
 	@Override
 	public BoardVO getDetail(int bno) {
-		log.info(">>>>detail check 3");
-		return sql.selectOne("BoardMapper.detail",bno);
+		log.info(">>>> detail check 3");
+		return sql.selectOne("BoardMapper.detail", bno);
 	}
 
 	@Override
 	public int update(BoardVO bvo) {
-		log.info(">>>modify check 3 ");
-		int isOk=sql.update("BoardMapper.up",bvo);
-		if(isOk>0) {sql.commit();}
+		log.info(">>>> modify check 3");
+		int isOk = sql.update("BoardMapper.up", bvo);
+		if( isOk > 0 ) { sql.commit(); }
 		return isOk;
 	}
 
-	
+	@Override
+	public int delete(int bno) {
+		log.info(">>>>remove check 3");
+		int isOk=sql.delete("BoardMapper.del",bno);
+		if(isOk<0) {sql.commit();}
+		return isOk;
+	}
+
 }

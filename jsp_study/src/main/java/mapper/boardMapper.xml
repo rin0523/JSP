@@ -20,19 +20,25 @@
 	</select>
 
 	<update id="read" parameterType="int">
-		update board set readCount=readCount+1 where bno=#{bno}
+		update board set
+		readCount=readCount+1 where bno=#{bno}
 	</update>
 
 	<select id="detail" parameterType="int" resultType="bvo">
-		select*from board where bno=#{bno}
+		select*from
+		board where bno=#{bno}
 
 	</select>
-	
-	
+
+
 	<update id="up" parameterType="bvo">
-	update board set title=#{title}, content=#{content}, moddate=now()
-	 where bno=#{bno}  
-	
+		update board set title=#{title}, content=#{content}, moddate=now()
+		where bno=#{bno}
+
 	</update>
+
+	<delete id="del" parameterType="int">
+		delete from board where bno=#{bno}
+	</delete>
 
 </mapper>

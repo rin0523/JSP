@@ -11,3 +11,14 @@ CREATE TABLE `board` (
   `readcount` int DEFAULT '0',
   PRIMARY KEY (`bno`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+
+--2023-11-27
+create table member(
+id varchar(100),
+pwd varchar(200) not null,
+email varchar(200) not null,
+age int default 0,
+regdate datetime default now(),
+lastlogin datetime default now(),
+primary key(id));
