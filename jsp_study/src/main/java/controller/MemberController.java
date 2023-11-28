@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -83,28 +84,27 @@ public class MemberController extends HttpServlet {
 				String id = request.getParameter("id");
 				String pwd = request.getParameter("pwd");
 				MemberVO mvo = new MemberVO(id, pwd);
-				
+
 				log.info(">>login check 1 ");
 
 				// id와 pwd가 일치하는 데이터의 객체를 리턴
 				MemberVO loginMvo = msv.login(mvo);
 				log.info("login mvo>>>{}" + loginMvo);
-				
-				//로그인 객체가 있음을 의미. 만약 로그인 객체가 없다면 loginMvo=null
-				//가져온 로그인 객체를 세션에 저장 
-				if(loginMvo!=null) {
-					//세션 객체 가져오기 
-					//연결된 세션 객체가 있다면 기존 객체 가져오기, 없으면 생성 
-					HttpSession ses= request.getSession();
+
+				// 로그인 객체가 있음을 의미. 만약 로그인 객체가 없다면 loginMvo=null
+				// 가져온 로그인 객체를 세션에 저장
+				if (loginMvo != null) {
+					// 세션 객체 가져오기
+					// 연결된 세션 객체가 있다면 기존 객체 가져오기, 없으면 생성
+					HttpSession ses = request.getSession();
 					ses.setAttribute("ses", loginMvo);
-					ses.setMaxInactiveInterval(10*60); // 로그인 유지 시간(초단위로 설정)
-					
-					
-				}else {
-					//로그인 객체가 없다면 
+					ses.setMaxInactiveInterval(10 * 60); // 로그인 유지 시간(초단위로 설정)
+
+				} else {
+					// 로그인 객체가 없다면
 					request.setAttribute("msg_login", -1);
 				}
-				destPage="/index.jsp";
+				destPage = "/index.jsp";
 
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -112,34 +112,110 @@ public class MemberController extends HttpServlet {
 			}
 
 			break;
-			
-		case "logout" : 
+
+		case "logout":
 			try {
-				//세션에 값이 있다면 세션 연결 끊기
-				HttpSession ses= request.getSession(); //로그인한 정보 
-				//lastLogin 정보 update 
-				//ses에서 mvo 객체로 가져오기 
-				
-				
-				MemberVO mvo= (MemberVO)ses.getAttribute("ses");
-				log.info("ses에서 추출한 mvo>>{}" , mvo);
-				
-				//lastLogin update 
-				isOk= msv.lastLogin(mvo.getId());
-				log.info("lastLogin>>>",isOk>0? "OK" :"Fail");
-				ses.invalidate();//세션 무효화(세션 끊기)
-				destPage= "/index.jsp";
-				
-				
-				
-				
+				// 세션에 값이 있다면 세션 연결 끊기
+				HttpSession ses = request.getSession(); // 로그인한 정보
+				// lastLogin 정보 update
+				// ses에서 mvo 객체로 가져오기
+
+				MemberVO mvo = (MemberVO) ses.getAttribute("ses");
+				log.info("ses에서 추출한 mvo>>{}", mvo);
+
+				// lastLogin update
+				isOk = msv.lastLogin(mvo.getId());
+				log.info("lastLogin>>>", isOk > 0 ? "OK" : "Fail");
+				ses.invalidate();// 세션 무효화(세션 끊기)
+				destPage = "/index.jsp";
+
 			} catch (Exception e) {
 				e.printStackTrace();
 				log.info(">>>logout error");
 			}
 			break;
 
+		case "list":
+			try {
+				log.info("list check 1");
+				List<MemberVO> list = msv.getList();
+
+				log.info("list>>{}" + list);
+				request.setAttribute("list", list);
+				destPage = "/member/list.jsp";
+
+			} catch (Exception e) {
+
+				log.info(">>>>list error");
+				e.printStackTrace();
+
+			}
+			break;
+			
+
+		case "detail":
+			try {
+				// detail.jsp 화면에 현재 사용자의 정보를 띄우기
+				destPage = "/member/detail.jsp";
+
+			} catch (Exception e) {
+				e.printStackTrace();
+				log.info(">>>detail error");
+			}
+			break;
+
+		case "modify":
+			try {
+
+				String id = request.getParameter("id");
+				String pwd = request.getParameter("pwd");
+				String email = request.getParameter("email");
+				int age = Integer.parseInt(request.getParameter("age"));
+				MemberVO mvo = new MemberVO(id, pwd, email, age);
+				log.info(">>>>>> "+mvo);
+				isOk = msv.modify(mvo);
+				log.info("modify>>{}" + (isOk > 0 ? "OK" : "Fail"));
+				if(isOk>0) {
+					request.setAttribute("msg_modify", "ok");
+				}
+				HttpSession ses=request.getSession();
+				ses.invalidate();
+				
+				destPage = "/index.jsp";
+
+			} catch (Exception e) {
+				log.info("modify error");
+				e.printStackTrace();
+			}
+			break;
+			
+
+		case "edit":
+			try {
+
+				String pwd = request.getParameter("pwd");
+				String email = request.getParameter("email");
+				String age = request.getParameter("age");
+				MemberVO mvo = new MemberVO(pwd, email, age, isOk);
+				log.info("edit check 1");
+				log.info("edit>> {}" + mvo);
+
+				isOk = msv.modify(mvo);
+				log.info("edit>>{}", isOk > 0 ? "OK" : "Fail");
+				destPage = "logout";
+
+			} catch (Exception e) {
+				log.info("edit error");
+				e.printStackTrace();
+			}
+			break;
+			
+		
+			
+			
 		}
+		
+		
 
 		// 목적지 주소 값 설정
 		rdp = request.getRequestDispatcher(destPage);

@@ -22,8 +22,8 @@
 	   ${ses.id } 님이 login 하셨습니다.<br>
 	   계정 생성일 : ${ses.regdate }<br>
 	   마지막 접속:${ses.lastlogin }<br>
-	   <a href="#"><button>회원정보수정</button></a>
-	   <a href="#"><button>회원리스트</button></a>
+	   <a href="/memb/detail"><button>회원정보수정</button></a>
+	   <a href="/memb/list"><button>회원리스트</button></a>
 	   <a href="/memb/logout"><button>로그아웃</button></a><br>
 	   <a href="/brd/register"><button>글쓰기 페이지로 이동</button></a>
 		</c:if>
@@ -45,6 +45,12 @@
 
 		if (msg_login == '-1') {
 			alert('로그인 정보가 일치하지 않습니다')
+		}
+		
+		const msg_modify=`<c:out value="${msg_modify}"/>`;
+		console.log(msg_modify);
+		if(msg_modify=="ok"){
+			alert('회원정보가 수정되었습니다. 다시 로그인 해주세요');
 		}
 		
 		

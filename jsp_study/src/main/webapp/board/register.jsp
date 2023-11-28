@@ -11,7 +11,7 @@
 
 <form action="/brd/insert" method="post">
 제목:<input type="text" name="title"><br>
-작성자: <input type="text" name="writer"><br>
+작성자: <input type="text" name="writer" value="${ses.id }" readonly="readonly"> <br>
 내용:<br>
 <textarea rows="10" cols="30" name="content"></textarea><br>
 

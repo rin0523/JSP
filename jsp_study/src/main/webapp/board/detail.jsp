@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,8 +33,11 @@
 	
 	</table>
 
+
+    <c:if test= "${ses.id eq bvo.writer}">
 	<a href="/brd/modify?bno=${bvo.bno }"><button>modify</button></a>
 	<a href="/brd/remove?bno=${bvo.bno }"><button>delete</button></a>
+	</c:if>
 	<a href="/brd/list"><button>list</button></a>
 
 

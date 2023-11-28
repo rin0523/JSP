@@ -41,10 +41,11 @@
 			<td>${bvo.readcount }</td>
 		</tr>
 	</table>
+	
 	<button type="submit">modify</button>
 	</form>
 	
-	<a href="/brd/remove?bno=${bvo.bno }"><button>remove</button></a>
+	<a href="/brd/remove?bno=${bvo.bno }"><button type="button">remove</button></a>
 	<a href="/brd/list"><button>list</button></a>
 </body>
 </html>

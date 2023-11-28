@@ -128,44 +128,46 @@ public class BoardController extends HttpServlet {
 
 			break;
 
-		case "modify" :
+		case "modify":
 			try {
 				// 수정할 데이터의 bno를 받아서 수정 페이지로 보내서
 				// modify.jsp를 띄우는 역할
-				
+
 				int bno = Integer.parseInt(request.getParameter("bno"));
-				
+
 				BoardVO bvo = bsv.getDetail(bno);
 				request.setAttribute("bvo", bvo);
 				destPage = "/board/modify.jsp";
-				
+
 			} catch (Exception e) {
 				log.info("modify error");
 				e.printStackTrace();
 			}
 			break;
 
-		case "edit" :
+		case "edit":
 			try {
 				// 파라미터로 받은 bno, title, content 데이터를
 				// DB에 수정하여 넣고, list로 이동
-				int bno = Integer.parseInt(request.getParameter("bno")); 
+				int bno = Integer.parseInt(request.getParameter("bno"));
 				String title = request.getParameter("title");
 				String content = request.getParameter("content");
 				BoardVO bvo = new BoardVO(bno, title, content);
 				log.info("edit check 1");
 				log.info("edit >>> {} " + bvo);
-				
+
 				isOk = bsv.modify(bvo);
-				log.info("eidt >> {} " ,isOk > 0 ? "OK" : "Fail");
-				destPage = "list";	// 내부 list case로 이동
-				
+				log.info("edit >> {} ", isOk > 0 ? "OK" : "Fail");
+				destPage = "list"; // 내부 list case로 이동
+
 			} catch (Exception e) {
 				log.info("edit error");
 				e.printStackTrace();
 			}
-			
+
 			break;
+			
+			
 		case "remove":
 			try {
 				int bno = Integer.parseInt(request.getParameter("bno"));
