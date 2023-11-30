@@ -5,31 +5,31 @@
   <mapper namespace="BoardMapper">
   
   <insert id="add" parameterType="bvo">
-  insert into board(title,writer,content)
+  insert into board2(title,writer,content)
   values(#{title},#{writer},#{content})
   </insert>
   
   <select id="list" resultType="bvo">
-  select*from board order by bno desc
+  select*from board2 order by bno desc
   </select>
   
   <update id="read" parameterType="int">
-  update board set
+  update board2 set
   readcount=readcount+1 where bno=#{bno}
   </update>
   
   <select id="detail" parameterType="int" resultType="bvo">
   select*from 
-  board where bno=#{bno}
+  board2 where bno=#{bno}
   </select>
   
   <update id="up" parameterType="bvo">
-  update board set title=#{title},content=#{content},moddate=now()
+  update board2 set title=#{title},content=#{content},moddate=now()
   where bno=#{bno}
   </update>
   
   <delete id="del" parameterType="int">
-  delete from board where bno=#{bno}
+  delete from board2 where bno=#{bno}
   </delete>
   
   
