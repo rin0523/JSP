@@ -59,10 +59,10 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public int remove(String id) {
-		// TODO Auto-generated method stub
-		return 0;
+		log.info(">>>remove check 2");
+		return mdao.delete(id);
 	}
-
+	
 
 	
 

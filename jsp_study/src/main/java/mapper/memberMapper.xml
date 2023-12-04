@@ -4,27 +4,36 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="MemberMapper">
 	<insert id="reg" parameterType="mvo">
-		insert into member(id, pwd, email, age)
+		insert into member(id, pwd,
+		email, age)
 		values(#{id},#{pwd},#{email},#{age})
 	</insert>
+	
 	<select id="login" parameterType="mvo" resultType="mvo">
-	select*from member where id=#{id} and pwd=#{pwd}
+		select*from
+		member where id=#{id} and pwd=#{pwd}
 	</select>
-	
+
 	<update id="last" parameterType="string">
-	update member set lastlogin= now() where id=#{id}
+		update member set lastlogin=
+		now() where id=#{id}
 	</update>
-	
+
 	<select id="list" resultType="mvo">
-	 select*from member order by id desc
+		select*from member order by id desc
 	</select>
-	
+
 
 	<update id="up" parameterType="mvo">
-		update member set pwd=#{pwd} , email=#{email} , age=#{age} 
+		update member set pwd=#{pwd} ,
+		email=#{email} , age=#{age}
 		where id=#{id}
 
 	</update>
+
+	<delete id="del" parameterType="string">
+		delete from member where id=#{id}
+	</delete>
 
 </mapper>
  

@@ -12,7 +12,7 @@
 
 	<form action="/memb/modify" method="post">
 		<table border="1">
-		<input type="hidden" name="id" value="${ses.id }">
+			<input type="hidden" name="id" value="${ses.id }">
 			<tr>
 				<th>ID</th>
 				<td>${ses.id}</td>
@@ -36,10 +36,9 @@
 				<th>lastlogin</th>
 				<td>${ses.lastlogin }</td>
 			</tr>
-
 		</table>
 		<button type="submit">수정</button>
-		<a href="/memb/remove"><button type="button">회원탈퇴</button></a>
+		<a href="/memb/remove?id=${ses.id }"><button type="button">회원탈퇴</button></a>
 	</form>
 
 	<a href="/memb/list"><button>list</button></a>

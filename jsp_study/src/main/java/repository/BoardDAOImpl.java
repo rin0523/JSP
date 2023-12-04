@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import domain.BoardVO;
+import domain.PagingVO;
 import orm.DatabaseBuilder;
 
 public class BoardDAOImpl implements BoardDAO {
@@ -37,9 +38,9 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 
 	@Override
-	public List<BoardVO> selectList() {
+	public List<BoardVO> selectList(PagingVO pgvo) {
 		log.info(">>>>list check 3");
-		return sql.selectList("BoardMapper.list");
+		return sql.selectList("BoardMapper.list", pgvo);
 	}
 
 	@Override
@@ -62,16 +63,26 @@ public class BoardDAOImpl implements BoardDAO {
 	public int update(BoardVO bvo) {
 		log.info(">>>> modify check 3");
 		int isOk = sql.update("BoardMapper.up", bvo);
-		if( isOk > 0 ) { sql.commit(); }
+		if (isOk > 0) {
+			sql.commit();
+		}
 		return isOk;
 	}
 
 	@Override
 	public int delete(int bno) {
 		log.info(">>>>remove check 3");
-		int isOk=sql.delete("BoardMapper.del",bno);
-		if(isOk<0) {sql.commit();}
+		int isOk = sql.delete("BoardMapper.del", bno);
+		if (isOk < 0) {
+			sql.commit();
+		}
 		return isOk;
+	}
+
+	@Override
+	public int getTotCnt(PagingVO pgvo) {
+		log.info(">>>> totalCount check 3");
+		return sql.selectOne("BoardMapper.totCnt", pgvo);
 	}
 
 }

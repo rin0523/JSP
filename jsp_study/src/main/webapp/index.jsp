@@ -35,7 +35,6 @@
 
 
 
-
 	<a href="/memb/join"><button>회원가입</button></a>
 	<a href="/brd/list"><button>게시판 리스트로 이동</button></a>
 	
@@ -53,6 +52,11 @@
 			alert('회원정보가 수정되었습니다. 다시 로그인 해주세요');
 		}
 		
+		const msg_remove=`<c:out value="${msg_remove}"/>`;
+		console.log(msg_remove);
+		if(msg_remove=="ok"){
+			alert('회원탈퇴 되었습니다');
+		}
 		
 	</script>
 

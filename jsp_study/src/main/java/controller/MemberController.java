@@ -210,6 +210,37 @@ public class MemberController extends HttpServlet {
 			}
 			break;
 			
+			
+			
+		case "remove":
+			try {
+				//id 해당 유저를 탈퇴 (삭제 후 세션 끊기)
+				//jsp에서 쿼리스트링으로 값을 달고 오는 방법 
+				//String id = request.getParameter("id");
+				
+				//session 객체에서 ses 객체를 가져오기
+				HttpSession ses= request.getSession(); // 현재 로그인된 정보
+				MemberVO mvo= (MemberVO)ses.getAttribute("ses");
+				String id=mvo.getId();
+				
+				isOk=msv.remove(id);
+				
+				//세션 끊고, index로 이동 
+				ses.invalidate();
+				
+				if(isOk>0){
+					request.setAttribute("msg_remove","ok");
+				}
+				
+				destPage="/index.jsp";
+			
+				
+			} catch (Exception e) {
+				log.info("remove error"); 
+				e.printStackTrace();
+			}
+			break;
+			
 		
 			
 			
