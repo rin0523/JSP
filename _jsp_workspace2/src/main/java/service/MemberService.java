@@ -1,6 +1,5 @@
 package service;
 
-
 import java.util.List;
 
 import domain.MemberVO;
@@ -17,10 +16,6 @@ public interface MemberService {
 
 	int modify(MemberVO mvo);
 
-
-
-
-
-	
+	int remove(String id);
 
 }

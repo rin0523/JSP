@@ -24,4 +24,8 @@
 		update member2 set pwd=#{pwd},email=#{email},age=#{age}
 		where id=#{id}
 	</update>
+	
+	<delete id="del" parameterType="string">
+	delete from member2 where id=#{id}
+	</delete>
 </mapper>

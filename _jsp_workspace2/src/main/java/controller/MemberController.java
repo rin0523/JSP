@@ -178,6 +178,27 @@ public class MemberController extends HttpServlet {
 				e.printStackTrace();
 			}
 			break;
+			
+		case "remove":
+			try {
+				HttpSession ses=request.getSession();
+				MemberVO mvo=(MemberVO)ses.getAttribute("ses");
+				String id=mvo.getId();
+				
+				isOk=msv.remove(id);
+				ses.invalidate();
+				
+				if(isOk>0) {
+					request.setAttribute("msg_remove", "ok");
+				}
+				
+				destPage="/index.jsp";
+				
+			} catch (Exception e) {
+				log.info("remove error");
+				e.printStackTrace();
+			}
+			break;
 
 	
 		}

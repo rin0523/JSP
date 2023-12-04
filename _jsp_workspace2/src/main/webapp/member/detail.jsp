@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,7 +24,7 @@
 </tr>
 <tr>
 <th>E-mail</th>
-<td><input type="text" name="email" value="{ses.email}"></td>
+<td><input type="text" name="email" value="${ses.email}"></td>
 </tr>
 <tr>
 <th>Regdate</th>

@@ -48,6 +48,12 @@ ${ses.id }님이 login 하셨습니다<br>
 		if (msg_modify == "ok") {
 			alert('회원정보가 수정되었습니다. 다시 로그인 해주세요');
 		}
+
+		const msg_remove = `<c:out value="${msg_remove}"/>`;
+		console.log(msg_remove);
+		if (msg_remove == "ok") {
+			alert('회원탈퇴 되었습니다');
+		}
 	</script>
 
 
