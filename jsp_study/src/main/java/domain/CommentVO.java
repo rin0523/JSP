@@ -74,6 +74,13 @@ public class CommentVO {
 		this.regdate = regdate;
 	}
 
+	@Override
+	public String toString() {
+		return "CommentVO [cno=" + cno + ", bno=" + bno + ", writer=" + writer + ", content=" + content + ", regdate="
+				+ regdate + "]";
+	}
+
+	
 
 	
 
