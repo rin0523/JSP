@@ -22,8 +22,12 @@ function spreadCommentList(result) {//result=>댓글리스트
 		html += `${result[i].writer},${result[i].regdate}</div>`;
 		html += `<div>`;
 		html += `<input type="text" class="cmtText" value="${result[i].content}">`;
-		html += `<button type="button" date-cno="${result[i].cno}" class="cmtModBtn">수정</button>`
-		html += `<button type="button" date-cno="${result[i].cno}" class="cmtDelBtn">삭제</button><br>`
+		if(result[i].writer==UserID){
+
+			html += `<button type="button" data-cno="${result[i].cno}" class="cmtModBtn">수정</button>`
+			html += `<button type="button" data-cno="${result[i].cno}" class="cmtDelBtn">삭제</button><br>`
+		}
+		
 		html += `</div></div><br><hr>`;
 		div.innerHTML += html; //각 댓글 객체를 누석해서 담기 
 	}
@@ -41,6 +45,7 @@ function printCommentList(bno) {
 		}
 
 	})
+	
 }
 
 
@@ -61,7 +66,7 @@ document.getElementById('cmtAddBtn').addEventListener('click', () => {
 			console.log(result);
 			if (result > 0) {
 				alert('댓글 등록 성공');
-				document.getElementById('cmtText').value ='';
+				document.getElementById('cmtText').value = '';
 			}
 
 
@@ -136,7 +141,7 @@ async function removeCommentFromServer(cnoVal) {
 
 document.addEventListener('click', (e) => {
 	console.log(e.target);
-	//삭제 버튼이 클릭되면.. 수정버튼이 클릭되면.. 
+	//삭제 버튼이 클릭되면.. 
 	if (e.target.classList.contains('cmtDelBtn')) {
 		let cnoVal = e.target.dataset.cno; //data-cno의 값을 추출 
 		console.log(cnoVal);
@@ -144,6 +149,21 @@ document.addEventListener('click', (e) => {
 			//result =isOk
 			if (result > 0) {
 				alert('댓글삭제 성공');
+				printCommentList(bnoVal);
+			}
+		})
+	}
+
+	//수정버튼이 클릭되면..
+	if (e.target.classList.contains('cmtModBtn')) {
+		let cnoVal = e.target.dataset.cno;
+		console.log(cnoVal);
+		let div = e.target.closest('div'); //타켓을 기준으로 가장 가까운 div를 찾기 
+		let cmtText = div.querySelector('.cmtText').value;
+		console.log(cmtText);
+		updateCommentFromServer(cnoVal, cmtText).then(result=>{
+			if(result>0){
+				alert('수정 성공');
 				printCommentList(bnoVal);
 			}
 		})

@@ -17,6 +17,7 @@ import org.json.simple.parser.JSONParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import domain.BoardVO;
 import domain.CommentVO;
 import domain.MemberVO;
 import service.CommentService;
@@ -127,14 +128,50 @@ public class CommentController extends HttpServlet {
 		case "remove":
 			try {
 
-				int cno = Integer.parseInt(request.getParameter("cno"));
-				log.info("remove check 1 ");
+				int cno = Integer.parseInt(request.getParameter("cnoVal"));
 				isOk = csv.remove(cno);
-				log.info("remove>>>{}", isOk > 0 ? "OK" : "Fail");
-				printWriter = "list";
+				log.info("comment remove>>{}" + (isOk > 0 ? "OK" : "Fail"));
+
+				PrintWriter out = response.getWriter();
+				out.print(isOk);
 
 			} catch (Exception e) {
-				log.info("comment delete error");
+				log.info("comment remove error");
+				e.printStackTrace();
+			}
+			break;
+			
+			
+
+		case "modify":
+			try {
+				StringBuffer sb = new StringBuffer();
+				String line = "";
+				BufferedReader br = request.getReader(); // 댓글 객체
+				while ((line = br.readLine()) != null) {
+					sb.append(line);
+				}log.info(">>>>>sb>>{}" + sb.toString());
+				JSONParser parser = new JSONParser();
+				JSONObject jsonObj = (JSONObject) parser.parse(sb.toString()); // key:value
+
+	
+				// key를 이용하여 value를 추출
+				int cno = Integer.parseInt(jsonObj.get("cno").toString());
+				String content = jsonObj.get("content").toString();
+
+				CommentVO cvo = new CommentVO(cno, content);
+				log.info("commentVO>>>>{}" + cvo);
+				isOk = csv.modify(cvo);
+				
+				log.info("isOk>>>" + ((isOk > 0) ? "OK" : "Fail"));
+				
+				
+				PrintWriter out = response.getWriter();
+				out.print(isOk);
+				
+
+			} catch (Exception e) {
+				log.info("comment modify error");
 				e.printStackTrace();
 			}
 			break;

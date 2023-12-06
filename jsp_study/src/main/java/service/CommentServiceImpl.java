@@ -32,6 +32,20 @@ public class CommentServiceImpl implements CommentService {
 		return cdao.getList(bno);
 	}
 
+	@Override
+	public int remove(int cno) {
+		log.info("comment remove check 2");
+		return cdao.delete(cno);
+	}
+
+	@Override
+	public int modify(CommentVO cvo) {
+		log.info("comment modify check 2");
+		return cdao.update(cvo);
+	}
+
+
+
 	
 	
 

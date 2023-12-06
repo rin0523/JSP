@@ -35,10 +35,10 @@
 
 
     <c:if test= "${ses.id eq bvo.writer}">
-	<a href="/brd/modify?bno=${bvo.bno }"><button>modify</button></a>
-	<a href="/brd/remove?bno=${bvo.bno }"><button>delete</button></a>
+	<a href="/brd/modify?bno=${bvo.bno }"><button class="btn btn-secondary">modify</button></a>
+	<a href="/brd/remove?bno=${bvo.bno }"><button class="btn btn-secondary">delete</button></a>
 	</c:if>
-	<a href="/brd/list"><button>list</button></a>
+	<a href="/brd/list"><button class="btn btn-secondary">list</button></a>
 	
 	<!-- comment line  -->
 	<hr>
@@ -65,6 +65,7 @@
 	<script type="text/javascript">
 	const bnoVal=`<c:out value="${bvo.bno}"/>`;
 	console.log(bnoVal);
+	const UserID=`<c:out value="${ses.id}"/>`;
 	</script>
 	<script src="/resources/board_detail.js"></script>
 	<script type="text/javascript">

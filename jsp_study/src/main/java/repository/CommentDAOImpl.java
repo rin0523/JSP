@@ -35,4 +35,22 @@ public class CommentDAOImpl implements CommentDAO {
 		return sql.selectList("CommentMapper.list", bno);
 	}
 
+	@Override
+	public int delete(int cno) {
+		log.info("comment remove check 3");
+		isOk = sql.delete("CommentMapper.del", cno);
+		if (isOk > 0)
+			sql.commit();
+		return isOk;
+	}
+
+	@Override
+	public int update(CommentVO cvo) {
+		log.info("comment modify check 3");
+		isOk = sql.update("CommentMapper.up", cvo);
+		if (isOk > 0)
+			sql.commit();
+		return isOk;
+	}
+
 }

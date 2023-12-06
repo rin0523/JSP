@@ -14,7 +14,7 @@
 	<form action="/memb/login" method="post">
 		ID : <input type="text" name="id" placeholder="ID"> 
 		Pwd:<input type="password" name="pwd" placeholder="Password">
-		<button type="submit">login</button>
+		<button type="submit" >login</button>
 	</form>
 
 	<div>
