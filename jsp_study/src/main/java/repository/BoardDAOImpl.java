@@ -85,4 +85,10 @@ public class BoardDAOImpl implements BoardDAO {
 		return sql.selectOne("BoardMapper.totCnt", pgvo);
 	}
 
+	@Override
+	public String getFileName(int bno) {
+		log.info(">>>> getFilename check 3");
+		return sql.selectOne("BoardMapper.fileName",bno);
+	}
+
 }

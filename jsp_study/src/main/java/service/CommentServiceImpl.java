@@ -44,6 +44,12 @@ public class CommentServiceImpl implements CommentService {
 		return cdao.update(cvo);
 	}
 
+	public int removeAll(int bno) {
+		log.info("comment removeAll check 2");
+		
+		return cdao.removeAll(bno);
+	}
+
 
 
 	

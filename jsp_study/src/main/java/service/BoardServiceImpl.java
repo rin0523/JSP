@@ -17,6 +17,7 @@ public class BoardServiceImpl implements BoardService {
 	private static final Logger log = LoggerFactory.getLogger(BoardServiceImpl.class);
 
 	private BoardDAO bdao; // interface로 생성
+	private CommentServiceImpl csv= new CommentServiceImpl();
 
 	public BoardServiceImpl() {
 		bdao = new BoardDAOImpl(); // class로 생성 bdao 구현 객체 생성
@@ -45,6 +46,8 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public int remove(int bno) {
 		log.info(">>>>remove check 2 ");
+		//지우기 전에 댓글 삭제 하고 글 지우기
+		int isOk= csv.removeAll(bno);
 		return bdao.delete(bno);
 	}
 
@@ -61,8 +64,11 @@ public class BoardServiceImpl implements BoardService {
 		return bdao.getTotCnt(pgvo);
 	}
 
-
-
+	@Override
+	public String getFileName(int bno) {
+		log.info(">>>> getfilename check 2");
+		return bdao.getFileName(bno);
+	}
 
 
 }

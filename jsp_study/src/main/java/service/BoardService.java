@@ -19,4 +19,6 @@ public interface BoardService {
 
 	int getTotCnt(PagingVO pgvo);
 
+	String getFileName(int bno);
+
 }

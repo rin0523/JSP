@@ -9,8 +9,8 @@
 	<!-- parameterType = 매개변수 객체, resultType = 결과로 나가는 객체 -->
 	<insert id="add" parameterType="bvo">
 		insert into board(title, writer,
-		content)
-		values(#{title}, #{writer}, #{content})
+		content,imageFile)
+		values(#{title}, #{writer}, #{content},#{imageFile})
 	</insert>
 
 	<!-- parameterType="domain.PagingVO" 이렇게 길게 쓰기 싫으면 MyBatisCongig에서 alias를 
@@ -33,7 +33,8 @@
 
 	<update id="up" parameterType="bvo">
 		update board set title = #{title},
-		content = #{content}, moddate = now()
+		content = #{content}, moddate = now(),
+		imageFile=#{imageFile}
 		where bno = #{bno}
 	</update>
 
@@ -44,6 +45,10 @@
 
 	<select id="totCnt" parameterType="pgvo" resultType="int">
 		select count(bno) from board <include refid="search"></include>
+	</select>
+	
+	<select id="fileName" resultType="String">
+	select imageFile from board where bno=#{bno}
 	</select>
 
 

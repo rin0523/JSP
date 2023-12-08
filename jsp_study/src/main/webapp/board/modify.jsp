@@ -5,12 +5,18 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-	<h1>Detail Page</h1>
-	<form action="/brd/edit" method="post">
+	<h1>Modify Page</h1>
+	<br>
+	<img alt="" src="/_fileUpload/${bvo.imageFile }">
+	<form action="/brd/edit" method="post" enctype="multipart/form-data">
 	<input type="hidden" name="bno" value="${bvo.bno }">
-	<table border="1">
+	<table class="table table-hover">
 		<tr>
 			<th>bno</th>
 			<%-- <td><input type="text" name="bno" value="${bvo.bno }" readonly="readonly"></td> --%>
@@ -27,6 +33,13 @@
 		<tr>
 			<th>content</th>
 			<td><textarea rows="10" cols="30" name="content">${bvo.content }</textarea></td>
+		</tr>
+		<tr>
+		<th>image_file</th>
+		<td>
+		<input type="hidden" name="image_file" value="${bvo.imageFile }">
+		<input type="file" name="new_file">
+		</td>
 		</tr>
 		<tr>
 			<th>regdate</th>

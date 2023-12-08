@@ -19,7 +19,7 @@
 	<div>
 		<form action="/brd/list" method="get">
 			<c:set value="${ph.pgvo.type }" var="typed"></c:set>
-			y <select name="type">
+			<select name="type">
 				<option ${ph.pgvo.type==null? 'selected' : ''}>Choose..</option>
 				<option value="t" ${typed eq 't'? 'selected' : ''}>title</option>
 				<option value="w" ${typed eq 'w'? 'selected' : ''}>writer</option>
@@ -28,13 +28,12 @@
 				<option value="tw" ${typed eq 'tw'? 'selected' : ''}>title&writer</option>
 				<option value="wc" ${typed eq 'wc'? 'selected' : ''}>writer&content</option>
 				<option value="twc" ${typed eq 'twc'? 'selected' : ''}>title&writer&content</option>
-			</select> <input type="text" name="keyword" placeholder="Search"
-				value="${ph.pgvo.keyword }"> <input type="hidden"
-				name="pageNo" value="1"> <input type="hidden" name="qty"
-				value="${ph.pgvo.qty }"> 
+			</select> 
+			<input type="text" name="keyword" placeholder="Search"value="${ph.pgvo.keyword }"> 
+			<input type="hidden" name="pageNo" value="1"> 
+			<input type="hidden" name="qty" value="${ph.pgvo.qty }"> 
 			<button type="submit" class="btn btn-primary position-relative">
-				<span
-					class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+				<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
 					99+ <span class="visually-hidden">Search</span>
 				</span>Search
 			</button>
@@ -49,6 +48,7 @@
 	<table class="table table-hover">
 		<tr>
 			<th>bno</th>
+			<th>thumbnail</th>
 			<th>title</th>
 			<th>writer</th>
 			<th>regdate</th>
@@ -59,6 +59,7 @@
 		<c:forEach items="${list }" var="bvo">
 			<tr>
 				<td><a href="/brd/detail?bno=${bvo.bno }">${bvo.bno }</a></td>
+				<td><img alt="" src="/_fileUpload/th_${bvo.imageFile }"></td>
 				<td><a href="/brd/detail?bno=${bvo.bno }">${bvo.title }</a></td>
 				<td>${bvo.writer }</td>
 				<td>${bvo.regdate }</td>
@@ -74,20 +75,17 @@
 	<div>
 		<!-- prev -->
 		<c:if test="${ph.prev}">
-			<a
-				href="/brd/list?pageNo=${ph.startPage-1 }&qty=${ph.pgvo.qty}&type=${ph.pgvo.type}&keyword=${ph.pgvo.keyword}">
+			<a href="/brd/list?pageNo=${ph.startPage-1 }&qty=${ph.pgvo.qty}&type=${ph.pgvo.type}&keyword=${ph.pgvo.keyword}">
 				◁ | </a>
 		</c:if>
 		<!-- paging -->
 		<c:forEach begin="${ph.startPage }" end="${ph.endPage }" var="i">
-			<a
-				href="/brd/list?pageNo=${i }&qty=${ph.pgvo.qty}&type=${ph.pgvo.type}&keyword=${ph.pgvo.keyword}">
+			<a href="/brd/list?pageNo=${i }&qty=${ph.pgvo.qty}&type=${ph.pgvo.type}&keyword=${ph.pgvo.keyword}">
 				${i} </a>
 		</c:forEach>
 		<!-- next -->
 		<c:if test="${ph.next}">
-			<a
-				href="/brd/list?pageNo=${ph.endPage+1 }&qty=${ph.pgvo.qty}&type=${ph.pgvo.type}&keyword=${ph.pgvo.keyword}">
+			<a href="/brd/list?pageNo=${ph.endPage+1 }&qty=${ph.pgvo.qty}&type=${ph.pgvo.type}&keyword=${ph.pgvo.keyword}">
 				| ▷ </a>
 		</c:if>
 	</div>

@@ -9,6 +9,10 @@
 </head>
 <body>
 	<h1>Detail Page</h1>
+	
+	<div>
+	<img alt="" src="/_fileUpload/${bvo.imageFile }">
+	</div>
 	<table border="1">
 		<tr>
 			<th>bno</th>
