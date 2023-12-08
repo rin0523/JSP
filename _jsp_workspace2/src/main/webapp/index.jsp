@@ -11,8 +11,8 @@
 	<h1>Hello!</h1>
 
 	<form action="/memb/login" method="post">
-		ID:<input type="text" name="id" placeholder="ID"> Pwd:<input
-			type="password" name="pwd" placeholder="Password">
+		ID:<input type="text" name="id" placeholder="ID"> 
+		Pwd:<input type="password" name="pwd" placeholder="Password">
 		<button type="submit">login</button>
 	</form>
 
@@ -24,7 +24,7 @@ ${ses.id }님이 login 하셨습니다<br>
 			<a href="/memb/detail"><button>회원정보수정</button></a>
 			<a href="/memb/list"><button>회원리스트</button></a>
 			<a href="/memb/logout"><button>로그아웃</button></a>
-			<a href="brd/register"><button>글쓰기 페이지로 이동</button></a>
+			<a href="/brd/register"><button>글쓰기 페이지로 이동</button></a>
 
 		</c:if>
 	</div>
@@ -32,7 +32,7 @@ ${ses.id }님이 login 하셨습니다<br>
 	<hr>
 	<br>
 
-	<a href="memb/join"><button>회원가입</button></a>
+	<a href="/memb/join"><button>회원가입</button></a>
 	<a href="/brd/list"><button>게시판 리스트로 이동</button></a>
 
 	<script type="text/javascript">

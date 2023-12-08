@@ -11,7 +11,7 @@
 <body>
 <h1>Join Page</h1><br>
 
-<form action="memb/register" method="post">
+<form action="/memb/register" method="post">
 ID:<input type="text" name="id"><br>
 PassWord:<input type="password" name="pwd"><br>
 E-Mail:<input type="text" name="email"><br>

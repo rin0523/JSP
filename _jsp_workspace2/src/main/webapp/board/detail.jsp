@@ -39,7 +39,7 @@
 	<a href="/brd/modify?bno=${bvo.bno }"><button>modify</button></a>
 	<a href="/brd/remove?bno=${bvo.bno }"><button>delete</button></a>
 	</c:if>
-	<a href="brd/list"><button>list</button></a>
+	<a href="/brd/list"><button>list</button></a>
 	
 	
 </body>

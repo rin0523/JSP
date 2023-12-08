@@ -143,8 +143,7 @@ public class MemberController extends HttpServlet {
 				String id=request.getParameter("id");
 				String pwd=request.getParameter("pwd");
 				String email=request.getParameter("email");
-				int age=Integer.parseInt(request.getParameter("age"));
-				MemberVO mvo= new MemberVO(id,pwd,email,age);
+				MemberVO mvo= new MemberVO(id,pwd,email);
 				log.info(">>>>"+mvo);
 				isOk=msv.modify(mvo);
 				log.info("modify>>{}"+(isOk>0? "OK":"Fail"));

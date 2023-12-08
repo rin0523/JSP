@@ -14,6 +14,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import domain.BoardVO;
+import domain.PagingVO;
+import handler.PagingHandler;
 import service.BoardService;
 import service.BoardServiceImpl;
 
@@ -61,7 +63,6 @@ public class BoardController extends HttpServlet {
 
 				BoardVO bvo = new BoardVO(title, writer, content);
 				log.info("insert bvo>>{}" + bvo);
-				System.out.println("insert bvo>>{}" + bvo);
 
 				isOk = bsv.register(bvo);
 				log.info("board register>>{}", isOk > 0 ? "OK" : "Fail");
@@ -77,10 +78,30 @@ public class BoardController extends HttpServlet {
 		case "list":
 			try {
 				log.info("list check 1");
+				PagingVO pgvo= new PagingVO();
+				
+				if(request.getParameter("pageNo")!=null) {
+					int pageNo=Integer.parseInt(request.getParameter("pageNo"));
+					int qty=Integer.parseInt(request.getParameter("qty"));
+					String type=request.getParameter("type");
+					String keyword=request.getParameter("keyword");
+					log.info(">>>>pageNo/qty"+pageNo+"/"+qty+"/"+type+"/"+keyword);
+					pgvo=new PagingVO(pageNo,qty,type,keyword);
+				}
+				
+				
+				
+				
 				List<BoardVO> list = bsv.getList();
-
 				log.info("list>>{}" + list);
+				
+				int totalCount=bsv.getToCnt(pgvo);
+				log.info("totalCount>>{}"+totalCount);
+				PagingHandler pg= new PagingHandler(pgvo,totalCount);
+				
+				
 				request.setAttribute("list", list);
+				request.setAttribute("ph", ph);
 				destPage = "/board/list.jsp";
 
 			} catch (Exception e) {
@@ -115,7 +136,7 @@ public class BoardController extends HttpServlet {
 				destPage = "/board/detail/jsp";
 
 			} catch (Exception e) {
-				log.info("detail error");
+				log.info("modify error");
 				e.printStackTrace();
 			}
 			break;
@@ -137,16 +158,16 @@ public class BoardController extends HttpServlet {
 				e.printStackTrace();
 			}
 			break;
-			
+
 		case "remove":
 			try {
-				int bno=Integer.parseInt(request.getParameter("bno"));
+				int bno = Integer.parseInt(request.getParameter("bno"));
 				log.info("remove check 1 ");
-				isOk=bsv.remove(bno);
-				log.info("remove>>{}",isOk>0? "OK" :"Fail");
-				
-				destPage="list";
-				
+				isOk = bsv.remove(bno);
+				log.info("remove>>{}", isOk > 0 ? "OK" : "Fail");
+
+				destPage = "list";
+
 			} catch (Exception e) {
 				log.info("remove error");
 				e.printStackTrace();

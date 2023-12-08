@@ -32,5 +32,9 @@
   delete from board2 where bno=#{bno}
   </delete>
   
+  <select id="totCnt" parameterType="pgvo" resultType="int">
+  select count(bno)from board2<include refid="search"></include>
+  </select>
+  
   
   </mapper>

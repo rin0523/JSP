@@ -20,9 +20,12 @@
 		select*from member2 order by id desc
 	</select>
 
+	
 	<update id="up" parameterType="mvo">
-		update member2 set pwd=#{pwd},email=#{email},age=#{age}
-		where id=#{id}
+	update member2 set pwd=#{pwd} ,
+	email=#{email} , age=#{age}
+	where id=#{id}
+
 	</update>
 	
 	<delete id="del" parameterType="string">
