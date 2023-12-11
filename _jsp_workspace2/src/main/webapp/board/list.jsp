@@ -109,8 +109,7 @@
 	
 	</div>
 
-	<a href="/brd/register"><button type="button"
-			class="btn btn-secondary">
+	<a href="/brd/register"><button type="button" class="btn btn-secondary">
 			<span class="badge text-bg-secondary">register</span>
 		</button></a>
 	<a href="/index.jsp"><button type="button"class="btn btn-secondary">
