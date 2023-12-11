@@ -11,25 +11,27 @@ import repository.MemberDAOImpl;
 
 public class MemberServiceImpl implements MemberService {
 	
-	private static final Logger log= LoggerFactory.getLogger(MemberServiceImpl.class);
-
-	private MemberDAO mdao;
+	private static final Logger log= 
+			LoggerFactory.getLogger( MemberServiceImpl.class);
+	
+	private MemberDAO mdao; //REPOSITORY=>INTERFACE로 생성 
 	
 	public MemberServiceImpl() {
 		mdao= new MemberDAOImpl();
 	}
+
 	
-	
+	//메서드 처리
 	@Override
 	public int register(MemberVO mvo) {
-		log.info(">>login check2");
+		log.info(">>join check 2");
 		return mdao.insert(mvo);
 	}
 
 
 	@Override
 	public MemberVO login(MemberVO mvo) {
-		log.info(">>login check 2");
+		log.info(">>login check 2 ");
 		return mdao.login(mvo);
 	}
 
@@ -43,7 +45,7 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public List<MemberVO> getList() {
-		log.info(">>list check2");
+		log.info(">>>list check2");
 		return mdao.selectList();
 	}
 
@@ -57,8 +59,11 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public int remove(String id) {
-		log.info(">>remove check2");
+		log.info(">>>remove check 2");
 		return mdao.delete(id);
 	}
+	
+
+	
 
 }

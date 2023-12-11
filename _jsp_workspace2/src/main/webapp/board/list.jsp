@@ -10,6 +10,11 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+	<style>
+    body {
+        background-color: #f0f0f0; /* 원하는 배경색으로 변경하세요. */
+    }
+</style>
 </head>
 <body>
 	<h1>List Page</h1>
@@ -37,7 +42,7 @@
 					99+ <span class="visually-hidden">Search</span>
 				</span>Search
 			</button>
-			<span class="translate-middle badge rounded-pill bg-donger">${ph.totalCount }</span>
+			
 		</form>
 
 
@@ -73,29 +78,42 @@
 
 	<!-- 페이지네이션 표시 구역 -->
 	<div>
-		<!-- prev -->
-		<c:if test="${ph.prev}">
-			<a href="/brd/list?pageNo=${ph.startPage-1 }&qty=${ph.pgvo.qty}&type=${ph.pgvo.type}&keyword=${ph.pgvo.keyword}">
-				◁ | </a>
-		</c:if>
-		<!-- paging -->
-		<c:forEach begin="${ph.startPage }" end="${ph.endPage }" var="i">
-			<a href="/brd/list?pageNo=${i }&qty=${ph.pgvo.qty}&type=${ph.pgvo.type}&keyword=${ph.pgvo.keyword}">
-				${i} </a>
-		</c:forEach>
-		<!-- next -->
-		<c:if test="${ph.next}">
-			<a href="/brd/list?pageNo=${ph.endPage+1 }&qty=${ph.pgvo.qty}&type=${ph.pgvo.type}&keyword=${ph.pgvo.keyword}">
-				| ▷ </a>
-		</c:if>
+	
+	<nav aria-label="Page navigation example">
+    <ul class="pagination">
+        <c:if test="${ph.prev}">
+            <li class="page-item">
+                <a class="page-link" href="/brd/list?pageNo=${ph.startPage - 1}&qty=${ph.pgvo.qty}&type=${ph.pgvo.type}&keyword=${ph.pgvo.keyword}" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+        </c:if>
+
+        <c:forEach begin="${ph.startPage}" end="${ph.endPage}" var="i">
+            <li class="page-item">
+                <a class="page-link" href="/brd/list?pageNo=${i}&qty=${ph.pgvo.qty}&type=${ph.pgvo.type}&keyword=${ph.pgvo.keyword}">${i}</a>
+            </li>
+        </c:forEach>
+
+        <c:if test="${ph.next}">
+            <li class="page-item">
+                <a class="page-link" href="/brd/list?pageNo=${ph.endPage + 1}&qty=${ph.pgvo.qty}&type=${ph.pgvo.type}&keyword=${ph.pgvo.keyword}" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </c:if>
+    </ul>
+</nav>
+	
+	
+	
 	</div>
 
 	<a href="/brd/register"><button type="button"
 			class="btn btn-secondary">
 			<span class="badge text-bg-secondary">register</span>
 		</button></a>
-	<a href="/index.jsp"><button type="button"
-			class="btn btn-secondary">
+	<a href="/index.jsp"><button type="button"class="btn btn-secondary">
 			<span class="badge text-bg-secondary">index</span>
 		</button></a>
 

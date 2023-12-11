@@ -1,19 +1,28 @@
 package domain;
 
 public class MemberVO {
-	
+
 	private String id;
 	private String pwd;
 	private String email;
 	private int age;
 	private String regdate;
 	private String lastlogin;
-	
-	public MemberVO() {}
-	
-	public MemberVO(String id,String pwd) {
-		this.id=id;
-		this.pwd=pwd;
+
+	public MemberVO() {
+	}
+
+	// login : id,pwd
+	public MemberVO(String id, String pwd) {
+		this.id = id;
+		this.pwd = pwd;
+	}
+
+	// join, modify : id,pwd,email,age
+	public MemberVO(String id, String pwd, String email, int age) {
+		this(id, pwd);
+		this.email = email;
+		this.age = age;
 	}
 	
 	public MemberVO(String id,String pwd,String email) {
@@ -21,14 +30,8 @@ public class MemberVO {
 		this.pwd=pwd;
 		this.email=email;
 	}
-	
-	
-	public MemberVO(String id,String pwd,String email,int age) {
-		this(id,pwd);
-		this.email=email;
-		this.age=age;
-	}
 
+	// 전부
 	public MemberVO(String id, String pwd, String email, int age, String regdate, String lastlogin) {
 		super();
 		this.id = id;
@@ -92,7 +95,5 @@ public class MemberVO {
 		return "MemberVO [id=" + id + ", pwd=" + pwd + ", email=" + email + ", age=" + age + ", regdate=" + regdate
 				+ ", lastlogin=" + lastlogin + "]";
 	}
-	
-	
 
 }

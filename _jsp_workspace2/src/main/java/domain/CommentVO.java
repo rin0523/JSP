@@ -7,20 +7,25 @@ public class CommentVO {
 	private String writer;
 	private String content;
 	private String regdate;
-	
+
 	public CommentVO() {}
 	
-	public CommentVO(int bno,String writer,String content) {
-		this.bno=bno;
-		this.writer=writer;
-		this.content=content;
-	}
-	
-	public CommentVO(int cno, String content) {
-		this.cno=cno;
-		this.content=content;
-	}
+	//post:bno,writer,content
 
+	 public CommentVO(int bno,String writer,String content) {
+		 this.bno=bno;
+		 this.writer=writer;
+		 this.content=content;
+	 }
+	 
+	 //modify: cno,content
+	 public CommentVO(int cno,String content) {
+		 this.cno=cno;
+		 this.content=content;
+	 }
+	 
+	 
+	//전부다
 	public CommentVO(int cno, int bno, String writer, String content, String regdate) {
 		this.cno = cno;
 		this.bno = bno;
@@ -74,10 +79,9 @@ public class CommentVO {
 		return "CommentVO [cno=" + cno + ", bno=" + bno + ", writer=" + writer + ", content=" + content + ", regdate="
 				+ regdate + "]";
 	}
+
 	
+
 	
-	
-	
-	
-	
+
 }

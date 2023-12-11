@@ -9,14 +9,16 @@ public interface BoardService {
 
 	int register(BoardVO bvo);
 
-	List<BoardVO> getList();
-
-	BoardVO getDetail(int bno);
+	List<BoardVO> getList(PagingVO pgvo);
 
 	int modify(BoardVO bvo);
 
 	int remove(int bno);
 
-	int getToCnt(PagingVO pgvo);
+	BoardVO getDetail(int bno);
+
+	int getTotCnt(PagingVO pgvo);
+
+	String getFileName(int bno);
 
 }

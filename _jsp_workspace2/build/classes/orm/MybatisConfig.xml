@@ -4,8 +4,9 @@
   "https://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<typeAliases>
-		<typeAlias type="domain.BoardVO" alias="bvo"/>
+		<typeAlias type="domain.BoardVO" alias="bvo"/> 
 		<typeAlias type="domain.MemberVO" alias="mvo"/>
+		<typeAlias type="domain.CommentVO" alias="cvo"/>
 		<typeAlias type="domain.PagingVO" alias="pgvo"/>
 	</typeAliases>
 	<environments default="development">
@@ -20,7 +21,8 @@
 		</environment>
 	</environments>
 	<mappers>
-		<mapper resource="mapper/boardMapper.xml" />
-		<mapper resource="mapper/memberMapper.xml" />
+		<mapper resource="mapper/boardMapper.xml" /> 
+		<mapper resource="mapper/memberMapper.xml" /> 
+		<mapper resource="mapper/commentMapper.xml" /> 
 	</mappers>
 </configuration>

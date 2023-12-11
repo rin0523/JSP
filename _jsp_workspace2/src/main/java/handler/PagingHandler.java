@@ -4,37 +4,31 @@ import domain.PagingVO;
 
 public class PagingHandler {
 
-	
 	private int startPage;
 	private int endPage;
-	private int realdEndPage;
+	private int realEndPage;
 	private boolean prev, next;
-	
+
 	private int totalCount;
 	private PagingVO pgvo;
 
-	
-	public PagingHandler(PagingVO pgvo,int totalCount) {
-		this.pgvo=pgvo;
-		this.totalCount=totalCount;
-		
-		this.endPage=(int)Math.ceil(pgvo.getPageNo()/(double)pgvo.getQty())*pgvo.getQty();
-		this.startPage=this.endPage-9;
-		
-		this.realdEndPage=(int)Math.ceil(totalCount/(double)pgvo.getQty());
-		
-		
-		if(this.realdEndPage<this.endPage) {
-			this.endPage=this.realEndPage;
+	public PagingHandler(PagingVO pgvo, int totalCount) {
+		this.pgvo = pgvo;
+		this.totalCount = totalCount;
+
+		this.endPage = (int) Math.ceil(pgvo.getPageNo() / (double) pgvo.getQty()) * pgvo.getQty();
+		this.startPage = this.endPage - 9;
+
+		this.realEndPage = (int) Math.ceil(totalCount / (double) pgvo.getQty());
+
+		if (this.realEndPage < this.endPage) {
+			this.endPage = this.realEndPage;
 		}
-		
-		this.prev=this.startPage>1;
-		this.next=this.endPage<this.realdEndPage;
-		
-		
+
+		this.prev = this.startPage > 1;
+		this.next = this.endPage < this.realEndPage;
+
 	}
-
-
 
 	public int getStartPage() {
 		return startPage;
@@ -52,12 +46,12 @@ public class PagingHandler {
 		this.endPage = endPage;
 	}
 
-	public int getRealdEndPage() {
-		return realdEndPage;
+	public int getRealEndPage() {
+		return realEndPage;
 	}
 
-	public void setRealdEndPage(int realdEndPage) {
-		this.realdEndPage = realdEndPage;
+	public void setRealEndPage(int realEndPage) {
+		this.realEndPage = realEndPage;
 	}
 
 	public boolean isPrev() {
@@ -94,13 +88,8 @@ public class PagingHandler {
 
 	@Override
 	public String toString() {
-		return "PagingHandler [startPage=" + startPage + ", endPage=" + endPage + ", realdEndPage=" + realdEndPage
+		return "PagingHandler [startPage=" + startPage + ", endPage=" + endPage + ", realEndPage=" + realEndPage
 				+ ", prev=" + prev + ", next=" + next + ", totalCount=" + totalCount + ", pgvo=" + pgvo + "]";
 	}
-	
-	
-	
-	
-	
-	
+
 }

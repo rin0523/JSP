@@ -17,5 +17,8 @@ public interface MemberService {
 	int modify(MemberVO mvo);
 
 	int remove(String id);
+	
+	
+
 
 }
