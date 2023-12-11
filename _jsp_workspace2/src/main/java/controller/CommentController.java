@@ -146,7 +146,7 @@ public class CommentController extends HttpServlet {
 				JSONParser parser = new JSONParser();
 				JSONObject jsonObj = (JSONObject) parser.parse(sb.toString());
 
-				int cno = Integer.parseInt(jsonObj.get("cno").toString());
+				int cno = Integer.parseInt(jsonObj.get("cnoVal").toString());
 				String content = jsonObj.get("content").toString();
 
 				CommentVO cvo = new CommentVO(cno, content);
