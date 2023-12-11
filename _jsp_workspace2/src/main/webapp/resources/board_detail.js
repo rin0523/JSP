@@ -99,7 +99,7 @@ async function updateCommentFromServer(cnoVal,cmtText){
 			headers:{
 				'Content-Type' : 'application/json;charset=utf-8'
 			},
-			body:JSON.stringify({cno:cnoVal,content:cmtText})
+			body:JSON.stringify({cnoVal,content:cmtText})
 		}
 		
 		const resp=await fetch(url,config);
@@ -115,7 +115,7 @@ async function updateCommentFromServer(cnoVal,cmtText){
 async function removeCommentFromServer(cnoVal){
 	try{
 		
-		const url='/cmt/remove? cnoVal='+cnoVal;
+		const url='/cmt/remove?cnoVal='+cnoVal;
 		const resp=await fetch(url);
 		const result=resp.text();
 		return result;
@@ -129,30 +129,30 @@ async function removeCommentFromServer(cnoVal){
 
 
 
-document.addEventListener('click',(e)=>{
-	console.log(e.target);
-	if(e.target.classList.contains('cmtDelBtn')){
-		let cnoVal = e.target.dataset.cno;
-		console.log(cnoVal);
-		removeCommentFromServer(cnoVal).then(result=>{
-			if(result>0){
-				alert('댓글삭제 성공');
-				printCommentList(bnoVal);
-			}
-		})
-	}
-})
+document.addEventListener('click', (e) => {
+    console.log(e.target);
+    if (e.target.classList.contains('cmtDelBtn')) {
+        let cnoVal = e.target.dataset.cno;
+        console.log(cnoVal);
+        removeCommentFromServer(cnoVal).then(result => {
+            if (result > 0) {
+                alert('댓글삭제 성공');
+                printCommentList(bnoVal);
+            }
+        });
+    }
 
-if(e.target.classList.contains('cmtModBtn')){
-	let cnoVal=e.target.dataset.cno;
-	console.log(cnoVal);
-	let div=e.target.closest('div');
-	let cmtText=div.querySelector('.cmtText').value;
-	console.log(cmtText);
-	updateCommentFromServer(cnoVal,cmtText).then(result=>{
-		if(result>0){
-			alert('수정 성공');
-			printCommentList(bnoVal);
-		}
-	})
-}
+    if (e.target.classList.contains('cmtModBtn')) {
+        let cnoVal = e.target.dataset.cno;
+        console.log(cnoVal);
+        let div = e.target.closest('div');
+        let cmtText = div.querySelector('.cmtText').value;
+        console.log(cmtText);
+        updateCommentFromServer(cnoVal, cmtText).then(result => {
+            if (result > 0) {
+                alert('수정 성공');
+                printCommentList(bnoVal);
+            }
+        });
+    }
+});

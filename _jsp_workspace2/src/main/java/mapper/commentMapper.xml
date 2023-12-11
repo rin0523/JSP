@@ -5,25 +5,25 @@
 <mapper namespace="CommentMapper">
 
 	<insert id="post">
-		insert into comment(bno,writer,content)
+		insert into comment2(bno,writer,content)
 		values(#{bno},#{writer},#{content})
 	</insert>
 	
 	<select id="list" resultType="cvo">
-		select*from comment where bno=#{bno} order by bno desc
+		select*from comment2 where bno=#{bno} order by bno desc
 	</select>
 
 	<delete id="del">
-		delete from comment where cno=#{cno}
+		delete from comment2 where cno=#{cno}
 	</delete>
 
 	<update id="up">
-		update comment set content = #{content},regdate=now()
+		update comment2 set content = #{content},regdate=now()
 		where cno=#{cno}
 	</update>
 	
 	<delete id="delAll">
-	delete from comment where bno=#{bno}
+	delete from comment2 where bno=#{bno}
 	</delete>
 
 

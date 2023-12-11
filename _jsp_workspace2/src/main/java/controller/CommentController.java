@@ -121,7 +121,6 @@ public class CommentController extends HttpServlet {
 
 		case "remove":
 			try {
-
 				int cno = Integer.parseInt(request.getParameter("cnoVal"));
 				isOk = csv.remove(cno);
 				log.info("comment remove>>{}" + (isOk > 0 ? "OK" : "Fail"));

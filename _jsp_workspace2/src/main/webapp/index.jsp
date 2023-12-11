@@ -16,7 +16,7 @@ background-color: #f0f0f0;
 
 	<h1>안녕하세요! <br>서울시청 홈페이지 입니다.</h1>
 	
-	<img src="resources/서울시.jpg" alt="" width="50%" height="auto">
+	<img src="resources/서울시.jpg" alt="" width="500px" height="auto">
 
 	<form action="/memb/login" method="post">
 		ID:<input type="text" name="id" placeholder="ID"> <br>
