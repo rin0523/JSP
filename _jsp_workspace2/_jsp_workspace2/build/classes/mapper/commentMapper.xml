@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="CommentMapper">
+
+	<insert id="post">
+		insert into comment2(bno,writer,content)
+		values(#{bno},#{writer},#{content})
+	</insert>
+	
+	<select id="list" resultType="cvo">
+		select*from comment2 where bno=#{bno} order by bno desc
+	</select>
+
+	<delete id="del">
+		delete from comment2 where cno=#{cno}
+	</delete>
+
+	<update id="up">
+		update comment2 set content = #{content},regdate=now()
+		where cno=#{cno}
+	</update>
+	
+	<delete id="delAll">
+	delete from comment2 where bno=#{bno}
+	</delete>
+
+
+</mapper>
